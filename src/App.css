@@ -1,0 +1,66 @@
+#root {
+  margin: 0;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+#scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#menu {
+  position: absolute;
+  font-size: 25px;
+  top: 15px;
+  left: 0;
+  background-color: #3E3E3E;
+  padding: 0px 10px 10px 5px;
+  z-index: 2;
+}
+
+.hide {
+  animation: hideAnimation 1s forwards;
+  animation-fill-mode: forwards;
+}
+
+.show {
+  animation: showAnimation 1s forwards;
+  animation-fill-mode: forwards;
+}
+
+@keyframes hideAnimation {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-440px); }
+}
+
+@keyframes showAnimation {
+  0% { transform: translateX(-440px); }
+  100% { transform: translateX(0); }
+}
+
+#menu button {
+  font-size: 20px;
+}
+
+#toggle-button {
+  height: 50px;
+  width: 20px;
+  font-size: 15px !important;
+  position: absolute;
+  top: 87px;
+  left: 445px;
+  z-index: 3;
+}
+
+.number-input {
+  width: 60px;
+  font-size: 20px;
+  padding: 1px;
+  margin: 0 10px 0 4px;
+}
