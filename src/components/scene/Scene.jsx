@@ -1,15 +1,36 @@
 import { useRef, useEffect } from "react";
-import * as THREE from 'three'
-import SceneInit from "../../lib/SceneInit";
+import SceneObject from "../../lib/SceneObject";
+import { useDispatch, useSelector } from 'react-redux';
+import { containerUpdateHandled } from "../../actions/containerActions";
 
 
 function Scene() {
 
     const canvasRef = useRef(null);
 
+    const containerHasupdate = useSelector(state => state.container.hasUpdate);
+    const containerDimensions = useSelector(state => state.container.dimensions);
+    const dispatch = useDispatch();
+
+    const sceneRef = useRef(null);
+
     useEffect(() => {
-        const newScene = new SceneInit(canvasRef);
-        newScene.animate();
+        if (containerHasupdate) {
+            sceneRef.current.updateContainer(containerDimensions);
+            dispatch(containerUpdateHandled());
+        }
+    },[containerHasupdate])
+
+    useEffect(() => {
+        
+        const scene = new SceneObject(canvasRef);
+        scene.animate();
+
+        sceneRef.current = scene;
+
+        return () => {
+            scene.cleanUp();
+        }
     },[])
 
     return (
