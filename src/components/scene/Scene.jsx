@@ -25,6 +25,7 @@ function Scene() {
         
         const scene = new SceneObject(canvasRef);
         scene.animate();
+        scene.container.updateExtremePointsSpheres();
 
         sceneRef.current = scene;
 

@@ -1,7 +1,7 @@
 const initialState = {
-    x: 0,
-    y: 0,
-    z: 0,
+    x: 1,
+    y: 1,
+    z: 1,
     position: null
 }
 
@@ -9,7 +9,7 @@ const boxReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case 'UPDATE':
+        case 'box/UPDATE':
             return {
                 ...state,
                 x: action.payload.x,
@@ -17,13 +17,13 @@ const boxReducer = (state = initialState, action) => {
                 z: action.payload.z
             };
         
-        case 'SET_POSITION':
+        case 'box/SET_POSITION':
             return {
                 ...state,
                 position: action.payload
             };
         
-        case 'RESET':
+        case 'box/RESET':
             return {
                 ...initialState
             };

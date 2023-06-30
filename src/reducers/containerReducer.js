@@ -7,12 +7,12 @@ const containerReducer = (state = initialState, action) => {
 
     switch(action.type) {
 
-        case 'UPDATE_HANDLED':
+        case 'container/UPDATE_HANDLED':
             return {
                 hasUpdate: false
             };
         
-        case 'UPDATE':
+        case 'container/UPDATE':
             return {
                 dimensions: {
                     x: action.payload.x, 
@@ -22,7 +22,7 @@ const containerReducer = (state = initialState, action) => {
                 hasUpdate: true,
             };
 
-        case 'RESET':
+        case 'container/RESET':
             return {
                 ...initialState
             }
