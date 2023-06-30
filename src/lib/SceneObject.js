@@ -48,13 +48,6 @@ class SceneObject {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-    updateContainer(dimensions) {
-        this.containerCleanUp();
-
-        this.container = new Container(dimensions.x, dimensions.y, dimensions.z);
-        this.scene.add(this.container.mesh);
-    }
-
     containerCleanUp() {
         this.scene.remove(this.container.mesh);
 
@@ -63,6 +56,13 @@ class SceneObject {
         });
 
         this.container.mesh.geometry.dispose();
+    }
+
+    updateContainer(dimensions) {
+        this.containerCleanUp();
+
+        this.container = new Container(dimensions.x, dimensions.y, dimensions.z);
+        this.scene.add(this.container.mesh);
     }
 
     cleanUp() {
