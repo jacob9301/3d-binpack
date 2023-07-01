@@ -14,7 +14,7 @@ function BoxForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (boxPositionSet) {
-
+            dispatch(updateBox(xDim, yDim, zDim));
         } else {
             window.alert('select position to add box');
         }

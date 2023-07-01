@@ -11,10 +11,6 @@ export default class Container {
         this.extremePoints = [];
 
         this.spheres = [];
-        this.sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
-        this.sphereMaterial = new THREE.MeshBasicMaterial({
-            color: 0x000000
-        });
 
         this.itemsInContainer = [];
 
@@ -116,7 +112,9 @@ export default class Container {
         this.spheresCleanUp();
 
         for (let ep of this.extremePoints){
-            const sphereMesh = new THREE.Mesh(this.sphereGeometry, this.sphereMaterial);
+            const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
+            const sphereMaterial = new THREE.MeshBasicMaterial({color: 0x3E3E3E});
+            const sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
             sphereMesh.ep = ep;
             sphereMesh.position.copy(ep).add(this.centreOffset)
             sphereMesh.name = 'ep';
@@ -128,10 +126,13 @@ export default class Container {
 
     }
 
-    addItem(item){
+    addItem(dimensions){
+        const item = new Item(dimensions.x, dimensions.y, dimensions.z);
         item.setPosition(this.selectedEp, this.centreOffset);
         this.itemsInContainer.push(item);
         this.mesh.add(item.mesh);
+
+        this.updateExtremePoints(item);
     }
 
     canTakeProjection(newItem, item, face) {

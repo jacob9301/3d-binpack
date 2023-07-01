@@ -1,8 +1,7 @@
 const initialState = {
-    x: 1,
-    y: 1,
-    z: 1,
-    position: null
+    dimensions: {x: 1, y: 1, z: 1},
+    position: false,
+    added: false
 }
 
 const boxReducer = (state = initialState, action) => {
@@ -12,16 +11,26 @@ const boxReducer = (state = initialState, action) => {
         case 'box/UPDATE':
             return {
                 ...state,
-                x: action.payload.x,
-                y: action.payload.y,
-                z: action.payload.z
+                dimensions: {
+                    x: action.payload.x, 
+                    y: action.payload.y, 
+                    z: action.payload.z
+                },
+                added: true
             };
         
         case 'box/SET_POSITION':
             return {
                 ...state,
-                position: action.payload
+                position: true
             };
+
+        case 'box/ADDED':
+            return {
+                ...state,
+                added: true
+            };
+            
         
         case 'box/RESET':
             return {

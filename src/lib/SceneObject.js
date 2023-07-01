@@ -1,6 +1,8 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import Container from './Container';
+import store from '../store';
+import { setBoxPosition } from '../actions/boxActions';
 
 class SceneObject {
     constructor(canvasRef) {
@@ -65,7 +67,7 @@ class SceneObject {
         for (const object of this.container.mesh.children){
             if (object.name === 'ep'){
                 if (object !== this.clicked){
-                    object.material.color.set(0x000000);
+                    object.material.color.set(0x3E3E3E);
                 }
             }
         }
@@ -77,7 +79,7 @@ class SceneObject {
 
         for (const object of intersects){
             if (object.object.name === 'ep'){
-                object.object.material.color.set(0xFF00FF);
+                object.object.material.color.set(0xFFFFFF);
                 break;
 
             }
@@ -110,12 +112,12 @@ class SceneObject {
             const intersects = this.raycaster.intersectObjects(this.container.mesh.children);
 
             for (const object of intersects) {
-                console.log(object.object);
 
                 if (object.object.name === 'ep'){
                     this.clicked = object.object
                     this.container.selectedEp = object.object.ep;
-                    object.object.material.color.set(0xFF00FF);
+                    store.dispatch(setBoxPosition());
+                    object.object.material.color.set(0xFFFFFF);
                     break;
                 }
             }

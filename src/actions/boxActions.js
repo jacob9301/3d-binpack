@@ -1,6 +1,9 @@
-export const setBoxPosition = (position) => ({
-    type: 'box/SET_POSITION',
-    payload: position
+export const setBoxPosition = () => ({
+    type: 'box/SET_POSITION'
+});
+
+export const resetBox = () => ({
+    type: 'box/RESET'
 });
 
 export const updateBox = (xDim, yDim, zDim) => ({
